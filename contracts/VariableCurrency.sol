@@ -179,7 +179,7 @@ contract VariableCurrency is Context, IERC20 {
      * @dev See {IERC20-totalSupply}.
      */
     function totalSupply() public view override returns (uint256) {
-        return SafeMath.div(SafeMath.mul(IERC20(_backingAddress).balanceOf(address(this)), uint(getLatestPrice())), _eightZeros);
+        return SafeMath.mul(SafeMath.div(IERC20(_backingAddress).balanceOf(address(this)), uint(getLatestPrice())), _eightZeros);
     }
     
     /**
@@ -200,7 +200,7 @@ contract VariableCurrency is Context, IERC20 {
      * @dev See {IERC20-balanceOf}.
      */
     function balanceOf(address account) public view override returns (uint256) {
-        return SafeMath.div(SafeMath.mul(_balances[account], uint(getLatestPrice())), _eightZeros);
+        return SafeMath.mul(SafeMath.div(_balances[account], uint(getLatestPrice())), _eightZeros);
     }
 
     /**
